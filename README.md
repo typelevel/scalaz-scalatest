@@ -9,3 +9,4 @@ Partially inspired by scalaz-specs2.
 
 * Brendan McAdams
 * Jason Swartz
+* Ryan Delucchi

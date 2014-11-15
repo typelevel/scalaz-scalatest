@@ -1,4 +1,3 @@
-
 package net.evilmonkeylabs.scalatest
 
 trait Util {

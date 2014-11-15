@@ -45,7 +45,16 @@ trait DisjunctionValues {
           throw new TestFailedException(sde => Some(s"$left is -\\/, expected \\/-."), None,
                                                MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "value"))
       }
+    }
 
+    def leftValue: E = {
+      disjunction match {
+        case \/-(right) =>
+          throw new TestFailedException(sde => Some(s"$right is \\/-, expected -\\/."), None,
+                                               MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "leftValue"))
+        case -\/(left) =>
+         left
+      }
     }
   }
 

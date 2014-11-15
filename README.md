@@ -1,4 +1,11 @@
 scalaz-scalatest
 ================
 
-Scalatest  bindings for Scalatest. Partially inspired by scalaz-specs2.
+Scalatest bindings for scalaz.
+
+Partially inspired by scalaz-specs2.
+
+## Contributors
+
+* Brendan McAdams
+* Jason Swartz

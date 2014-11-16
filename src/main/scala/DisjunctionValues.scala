@@ -8,7 +8,6 @@ import scalaz.{ -\/, \/, \/- }
 trait DisjunctionValues {
   import scala.language.implicitConversions
 
-
   /**
    * Implicit conversion that adds a `value` method to `scalaz.\/`
    *
@@ -43,14 +42,25 @@ trait DisjunctionValues {
           right
         case -\/(left) =>
           throw new TestFailedException(sde => Some(s"$left is -\\/, expected \\/-."), None,
-                                               MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "value"))
+            MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "value"))
       }
+    }
 
+    /**
+     * Allow .leftValue on an \/ to extract the left side. Like .value, but for the left.
+     */
+    def leftValue: E = {
+      disjunction match {
+        case \/-(right) =>
+          throw new TestFailedException(sde => Some(s"$right is \\/-, expected -\\/."), None,
+            MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "leftValue"))
+        case -\/(left) =>
+          left
+      }
     }
   }
 
 }
-
 
 // TODO: Fix me as a proper repl session example
 /**

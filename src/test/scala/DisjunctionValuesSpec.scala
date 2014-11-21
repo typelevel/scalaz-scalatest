@@ -4,7 +4,6 @@ import org.scalatest.{FunSpec, Matchers}
 import Matchers._
 import org.scalatest.OptionValues._
 import org.scalatest.exceptions.TestFailedException
-import org.typelevel.scalatest.DisjunctionValues
 import scalaz.{ -\/, \/, \/- }
 import scalaz.syntax.either._
 

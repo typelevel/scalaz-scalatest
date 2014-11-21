@@ -1,7 +1,6 @@
 package org.typelevel.scalatest
 
 import org.scalatest.{FlatSpec, Matchers}
-import org.typelevel.scalatest.DisjunctionMatchers
 
 import scalaz.{ -\/, \/, \/- }
 import scalaz.syntax.either._

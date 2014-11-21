@@ -1,4 +1,4 @@
-package net.evilmonkeylabs.scalatest
+package org.typelevel.scalatest.test
 
 trait Util {
 

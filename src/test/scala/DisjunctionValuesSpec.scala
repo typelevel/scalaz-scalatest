@@ -1,9 +1,10 @@
-package net.evilmonkeylabs.scalatest
+package org.typelevel.scalatest.test
 
 import org.scalatest.{FunSpec, Matchers}
 import Matchers._
 import org.scalatest.OptionValues._
 import org.scalatest.exceptions.TestFailedException
+import org.typelevel.scalatest.DisjunctionValues
 import scalaz.{ -\/, \/, \/- }
 
 class DisjunctionValuesSpec extends FunSpec with Util {

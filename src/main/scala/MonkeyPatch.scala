@@ -1,4 +1,4 @@
-package org.scalatest.evilmonkey.patch
+package org.scalatest.typelevel.patch
 
 import org.scalatest.exceptions.{StackDepthException, StackDepthExceptionHelper}
 

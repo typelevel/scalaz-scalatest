@@ -1,7 +1,7 @@
 package org.typelevel.scalatest
 
-import org.scalatest.evilmonkey.patch.MonkeyPatch
 import org.scalatest.exceptions.TestFailedException
+import org.scalatest.typelevel.patch.MonkeyPatch
 
 import scalaz.{ -\/, \/, \/- }
 

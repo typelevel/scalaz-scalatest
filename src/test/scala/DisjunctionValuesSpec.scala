@@ -1,4 +1,4 @@
-package org.typelevel.scalatest.test
+package org.typelevel.scalatest
 
 import org.scalatest.{FunSpec, Matchers}
 import Matchers._

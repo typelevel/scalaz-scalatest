@@ -4,6 +4,7 @@ import org.scalatest.exceptions.TestFailedException
 import org.scalatest.typelevel.patch.MonkeyPatch
 
 import scalaz.{ -\/, \/, \/- }
+import scalaz.syntax.either._
 
 trait DisjunctionValues {
   import scala.language.implicitConversions

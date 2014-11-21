@@ -2,7 +2,9 @@ package org.typelevel.scalatest
 
 import org.scalatest.{FlatSpec, Matchers}
 import org.typelevel.scalatest.DisjunctionMatchers
+
 import scalaz.{ -\/, \/, \/- }
+import scalaz.syntax.either._
 
 class DisjunctionMatchersSpec extends FlatSpec with Matchers with Util with DisjunctionMatchers {
   val goodHovercraft = \/.right(hovercraft)

@@ -3,6 +3,7 @@ package org.typelevel.scalatest
 import org.scalatest.matchers.{MatchResult, BeMatcher, Matcher}
 
 import scalaz.{ -\/, \/, \/- }
+import scalaz.syntax.either._
 
 trait DisjunctionMatchers {
   import scala.language.implicitConversions

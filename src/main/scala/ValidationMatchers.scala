@@ -3,6 +3,7 @@ package org.typelevel.scalatest
 import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
 
 import scalaz.{Failure, NonEmptyList, Success, Validation, ValidationNel}
+import scalaz.syntax.validation._
 
 
 trait ValidationMatchers {
@@ -26,7 +27,7 @@ trait ValidationMatchers {
    * @tparam E
    * @return
    */
-  def failure[E](element: E): Matcher[Validation[E, _]] = BeScalazFailureMatcher[E](element)
+  def beFailure[E](element: E): Matcher[Validation[E, _]] = BeScalazFailureMatcher[E](element)
 
   def failure[E]: BeMatcher[Validation[E, _]] = new IsScalazFailureMatcher[E]
 
@@ -38,6 +39,14 @@ trait ValidationMatchers {
    *
    */
   def success[T]: BeMatcher[Validation[_, T]] = new IsScalazSuccessMatcher[T]
+
+  /**
+   * Checks if a scalaz.Validation is a specific success element
+   * @param element
+   * @tparam T
+   * @return
+   */
+  def beSuccess[T](element: T): Matcher[Validation[_, T]] = BeScalazSuccessMatcher[T](element)
 
 
   case class HasScalazFailureNelMatcher[E](element: E) extends Matcher[ValidationNel[E, _]] {
@@ -70,6 +79,23 @@ trait ValidationMatchers {
         },
         s"$validation did not contain a Failure element matching '$element'.",
         s"$validation contained a Failure element matching '$element', but should not have."
+      )
+    }
+  }
+
+  case class BeScalazSuccessMatcher[T](element: T) extends Matcher[Validation[_, T]] {
+    def apply(validation: Validation[_, T]): MatchResult = {
+      MatchResult(
+        validation match {
+          case Success(`element`) =>
+            true
+          case Failure(_) =>
+            false
+          case _ =>
+            false
+        },
+        s"$validation did not contain a Success element matching '$element'.",
+        s"$validation contained a Success element matching '$element', but should not have."
       )
     }
   }

@@ -6,6 +6,7 @@ import org.scalatest.OptionValues._
 import org.scalatest.exceptions.TestFailedException
 import org.typelevel.scalatest.DisjunctionValues
 import scalaz.{ -\/, \/, \/- }
+import scalaz.syntax.either._
 
 class DisjunctionValuesSpec extends FunSpec with Util {
   import DisjunctionValues._

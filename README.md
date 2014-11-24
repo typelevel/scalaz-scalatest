@@ -9,7 +9,8 @@ Partially inspired by scalaz-specs2.
 
 ## Contributors
 
-* Brendan McAdams
-* Jason Swartz
-* Ryan Delucchi
-* Colt Frederickson
+* Brendan McAdams (@bwmcadams)
+* Jason Swartz (@swartzrock)
+* Ryan Delucchi (@ryanonsrc)
+* Colt Frederickson (@coltfred)
+* Thomas Lockney (@tlockney)

@@ -10,19 +10,20 @@ trait ValidationMatchers {
   import scala.language.implicitConversions
 
   /**
-   * Checks if a scalaz.ValidationNel contains a specific failure element
-   * Usage:
-   *  validationObj should haveFailure (someErrorMessageOrObject)
-   *
-   * Can also be used to test multiple elements:
+   * Checks if a `scalaz.ValidationNel` contains a specific failure element
+   * Usage: `
+   *   validationObj should haveFailure (someErrorMessageOrObject)
+   * `
+   * Can also be used to test multiple elements: `
    *  validationObj should (haveFailure (someErrorMessageOrObject) and
    *                       haveFailure (someOtherErrorMessageOrObject))
+   * `
    *
    */
   def haveFailure[E](element: E): Matcher[ValidationNel[E, _]] = HasScalazFailureNelMatcher[E](element)
 
   /**
-   * Checks if a scalaz.Validation is a specific failure element
+   * Checks if a `scalaz.Validation` is a specific failure element
    * @param element
    * @tparam E
    * @return
@@ -41,7 +42,7 @@ trait ValidationMatchers {
   def success[T]: BeMatcher[Validation[_, T]] = new IsScalazSuccessMatcher[T]
 
   /**
-   * Checks if a scalaz.Validation is a specific success element
+   * Checks if a `scalaz.Validation` is a specific success element
    * @param element
    * @tparam T
    * @return

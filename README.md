@@ -8,7 +8,7 @@ Scalatest bindings for scalaz.  Partially inspired by scalaz-specs2.
 Apache 2.0 licensed.
 
 
-**Current Version:** 0.2.0
+**Current Version:** 0.2.1
 
 *Some stuff is still in flight as we work with Scalatest to simplify some syntax. Changes will be minor but may effect matcher syntax for the next few releases.*
 
@@ -20,15 +20,12 @@ Matchers & Helpers are presently offered for testing of the following scalaz con
 
 We currently crossbuild for Scala 2.10 & 2.11. Test builds run against OpenJDK 6 & 7, and OracleJDK 7 & 8.
 
-We are working on integrating into the Typelevel package on Maven central, but for now you'll need to add the private bintray to access the dependency: 
-```sbt
-resolvers += "BWMcAdams Bintray" at "http://dl.bintray.com/bwmcadams/maven"
-```
+(NOTE: *As of November 24, 2014, The project should be synced to Maven central*)
 
-And then add the dependency (substituting version # as necessary):
+To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.2.0" % test
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.2.1" % test
 ```
 ## Usage
 

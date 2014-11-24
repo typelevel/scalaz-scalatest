@@ -1,5 +1,5 @@
 name := "scalaz-scalatest"
-version := "0.2.0"
+version := "0.3.0"
 organization := "org.typelevel"
 
 scalaVersion := "2.11.4"
@@ -17,7 +17,22 @@ libraryDependencies ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 licenses := Seq("Apache-2.0" → url("http://www.opensource.org/licenses/Apache-2.0"))
+url := Some(url("http://github.com/typelevel/scalaz-scalatest"))
 
 bintraySettings
 bintrayResolverSettings
 bintraySettings
+
+pomIncludeRepository := { _ => false }
+pomExtra := {
+  <scm>
+    <url>git@github.com:typelevel/scalaz-scalatest.git</url>
+    <connection>scm:git:git@github.com:typelevel/scalaz-scalatest.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>bwmcadams</id>
+      <name>Brendan McAdams</name>
+    </developer>
+  </developers>
+}

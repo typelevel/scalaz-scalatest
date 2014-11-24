@@ -59,11 +59,35 @@ Also brings the matchers into scope.
 
 And now, the matchers themselves.
 
-### DisjunctionMatchers
+### `DisjunctionMatchers`
 
 Disjunction matchers are provided for testing of `\/` instances. In addition, see below for information on the special `DisjunctionValues` helpers.
 
+#### `DisjunctionValues`
 
+If you would like to assume the right-bias of `\/` in your tests, we provide a "Values" helper similar to Scalatest's own `OptionValues`. This lets you invoke `value` and then treat it as if it is `\/-` (right). If it *isn't* right, the test will fail.
+
+This can be mixed in or explicitly imported via Object helper.
+```scala
+import org.typelevel.scalatest.DisjunctionValues
+import DisjunctionValues._
+
+val thisRecord = "I will not buy this record, it is scratched."
+val thisTobacconist = "Ah! I will not buy this tobacconist's, it is scratched."
+val hovercraft = "Yes, cigarettes. My hovercraft is full of eels."
+
+it("should return the value inside a disjunction (\\/) if that disjunction is \\/- (right)") {
+  val r: String \/ String = \/.right(thisRecord)
+  r.value should === (thisRecord)
+}
+
+it("should throw TestFailedException if that disjunction (\\/) is -\\/ (left) ") {
+  val r: String \/ String = \/.left(thisTobacconist)
+  val caught =
+    evaluating {
+      r.value should === (thisRecord)
+    } should produce [TestFailedException]
+```
 
 ## Contributors
 

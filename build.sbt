@@ -1,5 +1,5 @@
 name := "scalaz-scalatest"
-version := "0.3.0"
+version := "0.2.2"
 organization := "org.typelevel"
 
 scalaVersion := "2.11.4"

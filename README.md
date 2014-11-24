@@ -7,6 +7,12 @@ Scalatest bindings for scalaz.
 
 Partially inspired by scalaz-specs2.
 
+## Setting Up
+
+We currently cross build for Scala 2.10.4 and 2.11.4 – the CI system validates us against OpenJDK 6, Open & Oracle JDK 7s, and Oracle JDK 8.
+
+We are working on migrating the package into the `org.typelevel` space but for now releases are only on bintary.
+
 ## Contributors
 
 * [Brendan McAdams](http://github.com/bwmcadams) [bwmcadams]

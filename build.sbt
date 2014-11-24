@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 licenses := Seq("Apache-2.0" → url("http://www.opensource.org/licenses/Apache-2.0"))
-url := Some(url("http://github.com/typelevel/scalaz-scalatest"))
+homepage := Some(url("http://github.com/typelevel/scalaz-scalatest"))
 
 bintraySettings
 bintrayResolverSettings

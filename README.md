@@ -1,7 +1,7 @@
 scalaz-scalatest
 ================
 
-![Travis CI Build](https://travis-ci.org/bwmcadams/scalaz-scalatest.svg)
+[![Build Status](https://travis-ci.org/bwmcadams/scalaz-scalatest.svg?branch=master)](https://travis-ci.org/bwmcadams/scalaz-scalatest)
 
 Scalatest bindings for scalaz.
 

@@ -8,7 +8,7 @@ Scalatest bindings for scalaz.  Partially inspired by scalaz-specs2.
 Apache 2.0 licensed.
 
 
-**Current Version:** 0.2.2
+**Current Version:** 0.2.3
 
 *Some stuff is still in flight as we work with Scalatest to simplify some syntax. Changes will be minor but may effect matcher syntax for the next few releases.*
 

@@ -19,9 +19,9 @@ class DisjunctionValuesSpec extends FunSpec with Util {
     it("should throw TestFailedException if that disjunction (\\/) is -\\/ (left) ") {
       val r: String \/ String = \/.left(thisTobacconist)
       val caught =
-        evaluating {
+        intercept[TestFailedException] {
           r.value should === (thisRecord)
-        } should produce [TestFailedException]
+        } 
       caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
       caught.failedCodeFileName.value should be ("DisjunctionValuesSpec.scala")
     }
@@ -35,9 +35,9 @@ class DisjunctionValuesSpec extends FunSpec with Util {
 
     it("should throw TestFailedException if the disjunction is right"){
       val r = \/.right(thisRecord)
-      val caught = evaluating{
+      val caught = intercept[TestFailedException] {
         r.leftValue
-      } should produce[TestFailedException]
+      } 
       caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
       caught.failedCodeFileName.value should be ("DisjunctionValuesSpec.scala")
     }

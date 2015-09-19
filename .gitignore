@@ -1,7 +1,8 @@
 *.class
 *.log
 *.swp
-
+*.sublime-workspace
+*.sublime-project
 
 .idea/
 

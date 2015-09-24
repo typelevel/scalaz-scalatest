@@ -14,7 +14,7 @@ Apache 2.0 licensed.
 
 Matchers & Helpers are presently offered for testing of the following scalaz concepts:
 * Disjunction – aka `\/` ( with extra helpers similar to Scalatest `OptionValues` )
-* `Validation`
+* `Validation` ( with extra helpers similar to Scalatest `OptionValues` )
 
 ## Setup  
 

@@ -2,8 +2,8 @@ name := "scalaz-scalatest"
 version := "0.2.3"
 organization := "org.typelevel"
 
-scalaVersion := "2.11.6"
-crossScalaVersions := Seq("2.10.5", "2.11.6")
+scalaVersion := "2.11.7"
+crossScalaVersions := Seq("2.10.5", "2.11.7")
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -11,7 +11,7 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scalaz" %% "scalaz-core" % "7.1.1",
+  "org.scalaz" %% "scalaz-core" % "7.1.4",
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
 

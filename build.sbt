@@ -34,5 +34,9 @@ pomExtra := {
       <id>bwmcadams</id>
       <name>Brendan McAdams</name>
     </developer>
+    <developer>
+      <id>coltfred</id>
+      <name>Colt Frederickson</name>
+    </developer>
   </developers>
 }

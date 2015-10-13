@@ -25,7 +25,7 @@ We currently crossbuild for Scala 2.10 & 2.11. Test builds run against OpenJDK 6
 To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.3.0" % test
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.3.0" % "test"
 ```
 ## Usage
 

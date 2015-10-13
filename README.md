@@ -8,7 +8,7 @@ Scalatest bindings for scalaz.  Partially inspired by scalaz-specs2.
 Apache 2.0 licensed.
 
 
-**Current Version:** 0.2.3
+**Current Version:** 0.3.0
 
 *Some stuff is still in flight as we work with Scalatest to simplify some syntax. Changes will be minor but may effect matcher syntax for the next few releases.*
 
@@ -25,7 +25,7 @@ We currently crossbuild for Scala 2.10 & 2.11. Test builds run against OpenJDK 6
 To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.2.2" % test
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.3.0" % test
 ```
 ## Usage
 
@@ -89,7 +89,8 @@ it("should throw TestFailedException if that disjunction (\\/) is -\\/ (left) ")
 ## Contributors
 
 * [Brendan McAdams](http://github.com/bwmcadams) [bwmcadams]
-* [Jason Swartz](http://github.com/swartzrock) [swartzrock]
-* [Ryan Delucchi](http://github.com/ryanonsrc) [ryanonsrc]
 * [Colt Frederickson](http://github.com/coltfred) [coltfred]
+* [Gavin Bisesi](http://github.com/Daenyth) [Daenyth]
 * [Thomas Lockney](http://github.com/tlockney) [tlockney]
+* [Ryan Delucchi](http://github.com/ryanonsrc) [ryanonsrc]
+* [Jason Swartz](http://github.com/swartzrock) [swartzrock]

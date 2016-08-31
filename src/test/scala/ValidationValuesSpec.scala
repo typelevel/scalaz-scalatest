@@ -19,9 +19,9 @@ class ValidationValuesSpec extends FunSpec with Util {
     it("should throw TestFailedException if that validation is Failure") {
       val r: Validation[String, String] = Failure(thisTobacconist)
       val caught =
-        evaluating {
+        intercept[TestFailedException] {
           r.value should === (thisRecord)
-        } should produce [TestFailedException]
+        }
       caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
       caught.failedCodeFileName.value should be ("ValidationValuesSpec.scala")
     }
@@ -35,9 +35,9 @@ class ValidationValuesSpec extends FunSpec with Util {
 
     it("should throw TestFailedException if the validation is right"){
       val r = Success(thisRecord)
-      val caught = evaluating{
+      val caught = intercept[TestFailedException]{
         r.leftValue
-      } should produce[TestFailedException]
+      } 
       caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
       caught.failedCodeFileName.value should be ("ValidationValuesSpec.scala")
     }

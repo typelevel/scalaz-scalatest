@@ -4,6 +4,7 @@ scalaz-scalatest
 [![Build Status](https://travis-ci.org/typelevel/scalaz-scalatest.svg?branch=master)](https://travis-ci.org/typelevel/scalaz-scalatest)
 [![codecov.io](https://codecov.io/github/typelevel/scalaz-scalatest/coverage.svg?branch=master)](https://codecov.io/github/typelevel/scalaz-scalatest?branch=master)
 [![scaladoc](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11.svg?label=scaladoc)](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11)
+
 Scalatest bindings for scalaz.  Partially inspired by scalaz-specs2.
 
 Apache 2.0 licensed.

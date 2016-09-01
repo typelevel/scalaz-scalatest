@@ -57,7 +57,7 @@ trait ValidationMatchers {
           case Success(_) =>
             false
           case Failure(n: NonEmptyList[E]) =>
-            n.list contains element
+            n.list.toList contains element
           case _ =>
             false
         },

@@ -5,35 +5,34 @@ scalaz-scalatest
 [![codecov.io](https://codecov.io/github/typelevel/scalaz-scalatest/coverage.svg?branch=master)](https://codecov.io/github/typelevel/scalaz-scalatest?branch=master)
 [![scaladoc](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11.svg?label=scaladoc)](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11)
 
-Scalatest bindings for scalaz.  Partially inspired by scalaz-specs2.
+Scalatest bindings for scalaz.
 
-Apache 2.0 licensed.
+## Setup
 
+We currently crossbuild for Scala 2.10 & 2.11.
 
-**Current Version:** 0.3.0
-
-*Some stuff is still in flight as we work with Scalatest to simplify some syntax. Changes will be minor but may effect matcher syntax for the next few releases.*
-
-Matchers & Helpers are presently offered for testing of the following scalaz concepts:
-* Disjunction – aka `\/` ( with extra helpers similar to Scalatest `OptionValues` )
-* `Validation` ( with extra helpers similar to Scalatest `OptionValues` )
-
-## Setup  
-
-We currently crossbuild for Scala 2.10 & 2.11. Test builds run against OpenJDK 6 & 7, and OracleJDK 7 & 8.
-
-(NOTE: *As of November 24, 2014, The project should be synced to Maven central*)
+|Scalaz-Scalatest Version | Scalaz Version  | Scalatest Version |
+|-------------------------| --------------  | ----------------- |
+| 0.4.0                   | 7.1.x           | 2.2.6             |
+| 1.0.0                   | 7.2.x           | 2.2.6             |
 
 To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "0.3.0" % "test"
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.0.0" % "test"
 ```
+
+## What does this provide?
+
+Matchers & Helpers are presently offered for testing of the following scalaz concepts:
+* Disjunction - aka `\/` 
+* `Validation`
+
 ## Usage
 
-There are two ways to use the provided matchers. 
+There are two ways to use the provided matchers:
 
-* Mix-In
+You can mix them in:
 
 ```scala
 class MySillyWalkSpec extends FlatSpec with Matchers with DisjunctionMatchers { 
@@ -42,10 +41,11 @@ class MySillyWalkSpec extends FlatSpec with Matchers with DisjunctionMatchers {
 ```
 This makes the matchers in `DisjunctionMatchers` available inside the scope of your test. 
 
-You can also import explicitly from a provided object, instead.
+
+You can also import explicitly from a provided object:
 
 ```scala
-import org.typelevel.scalatest.DisjunctionMatchers
+import scalaz.scalatest.DisjunctionMatchers
 
 class MySillyWalkSpec extends FlatSpec with Matchers { 
   import DisjunctionMatchers._
@@ -58,35 +58,101 @@ Also brings the matchers into scope.
 
 And now, the matchers themselves.
 
-### `DisjunctionMatchers`
+## Disjunction Matchers
 
-Disjunction matchers are provided for testing of `\/` instances. In addition, see below for information on the special `DisjunctionValues` helpers.
+DisjunctionMatchers supplies the following methods:
 
-#### `DisjunctionValues`
-
-If you would like to assume the right-bias of `\/` in your tests, we provide a "Values" helper similar to Scalatest's own `OptionValues`. This lets you invoke `value` and then treat it as if it is `\/-` (right). If it *isn't* right, the test will fail.
-
-This can be mixed in or explicitly imported via Object helper.
-```scala
-import org.typelevel.scalatest.DisjunctionValues
-import DisjunctionValues._
-
-val thisRecord = "I will not buy this record, it is scratched."
-val thisTobacconist = "Ah! I will not buy this tobacconist's, it is scratched."
-val hovercraft = "Yes, cigarettes. My hovercraft is full of eels."
-
-it("should return the value inside a disjunction (\\/) if that disjunction is \\/- (right)") {
-  val r: String \/ String = \/.right(thisRecord)
-  r.value should === (thisRecord)
-}
-
-it("should throw TestFailedException if that disjunction (\\/) is -\\/ (left) ") {
-  val r: String \/ String = \/.left(thisTobacconist)
-  val caught =
-    evaluating {
-      r.value should === (thisRecord)
-    } should produce [TestFailedException]
 ```
+beLeft[E](element: E)
+left[E]
+beRight[T](element: T)
+right[T]
+```
+
+### Specific Element Matchers
+
+The matchers that begin with a be prefix are for matching a specific element inside of the `\/`.
+
+Something like the following:
+
+```
+val s = "Hello World"
+val valueInRight = \/.right(s)
+
+//This passes
+valueInRight should beRight(s)
+
+//This fails with the following message:
+//\/-(Hello World) did not contain an \/- element matching 'goodbye'.
+valueInRight should beRight("goodbye")
+```
+
+The matchers work the same for `beLeft`.
+
+### Right and Left Matchers
+
+The `left` and `right` matchers are for checking to see if the `\/` is a right or left without caring what's inside.
+
+```
+  //This passes
+  \/.left("uh oh") should be(left)
+  
+  //This fails with the following message:
+  //-\/(uh oh) was not an \/-, but should have been.
+  \/.left("uh oh") should be(right)
+```
+
+## Validation Matchers
+
+scalaz.Validation also has matchers similar to the ones described above.
+
+```
+def beFailure[E](element: E)
+def failure[E]
+def success[T]
+def beSuccess[T](element: T)
+```
+
+I won't repeat how they're used here. `Validation` does have an additional matcher though which allows
+you to describe values that are in the `Failure` if you're using `ValidationNel`.
+
+This matcher is `haveFailure` and can be used like this:
+
+```
+val validationNelValue: ValidationNel[String, Int] = Validation.failure(NonEmptyList("error1", "error2"))
+
+//The following works fine:
+validationNelValue should haveFailure("error1")
+
+//But you can also combine them with the and word to match multiple values:
+validateNelValue should (haveFailure("error1") and haveFailure("error2"))
+```
+
+
+## Values Helpers
+
+A very common test idiom is to want to assert the `\/` is a left or a right and then extract the value. For this
+we supply `DisjunctionValues`. This can be mixed into your test or imported as an object just like the matchers above, but 
+instead of providing Matchers it instead adds `value` and `leftValue` as syntax to the `\/` type.
+
+```
+val x = \/.right("hello")
+//Passes!
+x.value shouldBe "hello" 
+
+//Fails with the following message:
+//    'Hello' is \/-, expected -\/.
+x.leftValue shouldBe "hello" 
+```
+
+The same is true for the `Validation`. If you import or mixin `ValidationMatchers` you'll be able to call `.value` to extract
+`Success` and `.leftValue` to extract the `Failure` side.
+
+## Documentation and Support
+* See the [scaladoc](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11).
+* The [tests](https://github.com/typelevel/scalaz-scalatest/tree/master/src/test/scala) show usage.
+* Yell at [@coltfred](https://twitter.com/coltfred) on twitter or drop by #scalaz on freenode.
+
 
 ## Contributors
 
@@ -96,3 +162,6 @@ it("should throw TestFailedException if that disjunction (\\/) is -\\/ (left) ")
 * [Thomas Lockney](http://github.com/tlockney) [tlockney]
 * [Ryan Delucchi](http://github.com/ryanonsrc) [ryanonsrc]
 * [Jason Swartz](http://github.com/swartzrock) [swartzrock]
+
+
+Partially inspired by scalaz-specs2. Predecesor to [cats-scalatest](https://github.com/IronCoreLabs/cats-scalatest).

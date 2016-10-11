@@ -10,8 +10,8 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scalaz" %% "scalaz-core" % "7.1.9",
-  "org.scalatest" %% "scalatest" % "2.2.6"
+  "org.scalaz" %% "scalaz-core" % "7.1.10",
+  "org.scalatest" %% "scalatest" % "3.0.0"
 )
 
 resolvers += Resolver.sonatypeRepo("releases")

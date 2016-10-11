@@ -1,10 +1,10 @@
 package org.typelevel.scalatest
 
-import org.scalatest.exceptions.TestFailedException
-import org.scalatest.typelevel.patch.MonkeyPatch
+import org.scalatest.exceptions.{TestFailedException,StackDepthException}
 
 import scalaz.{ -\/, \/, \/- }
 import scalaz.syntax.either._
+import org.scalactic.source
 
 trait DisjunctionValues {
   import scala.language.implicitConversions
@@ -14,7 +14,7 @@ trait DisjunctionValues {
    *
    * @param disjunction the `scalaz.\/` on which to add the `value` method
    */
-  implicit def convertDisjunctionToDisjunctionated[E, T](disjunction: E \/ T) = new Disjunctionable(disjunction)
+  implicit def convertDisjunctionToDisjunctionated[E, T](disjunction: E \/ T)(implicit pos: source.Position) = new Disjunctionable(disjunction, pos)
 
   // TODO: Fix me as a proper repl session example
   /**
@@ -36,14 +36,13 @@ trait DisjunctionValues {
    *
    * @see org.scalatest.OptionValues.Valuable
    */
-  class Disjunctionable[E, T](disjunction: E \/ T) {
+  class Disjunctionable[E, T](disjunction: E \/ T, pos:source.Position) {
     def value: T = {
       disjunction match {
         case \/-(right) =>
           right
         case -\/(left) =>
-          throw new TestFailedException(sde => Some(s"$left is -\\/, expected \\/-."), None,
-            MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "value"))
+          throw new TestFailedException((_: StackDepthException) => Some(s"$left is -\\/, expected \\/-."), None,pos)
       }
     }
 
@@ -53,8 +52,7 @@ trait DisjunctionValues {
     def leftValue: E = {
       disjunction match {
         case \/-(right) =>
-          throw new TestFailedException(sde => Some(s"$right is \\/-, expected -\\/."), None,
-            MonkeyPatch.getStackDepthFun("DisjunctionValues.scala", "leftValue"))
+          throw new TestFailedException((_: StackDepthException) => Some(s"$right is \\/-, expected -\\/."), None,pos)
         case -\/(left) =>
           left
       }

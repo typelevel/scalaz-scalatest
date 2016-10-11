@@ -14,12 +14,14 @@ We currently crossbuild for Scala 2.10 & 2.11.
 |Scalaz-Scalatest Version | Scalaz Version  | Scalatest Version |
 |-------------------------| --------------  | ----------------- |
 | 0.4.0                   | 7.1.x           | 2.2.6             |
+| 0.5.0                   | 7.1.x           | 3.0.0             |
 | 1.0.0                   | 7.2.x           | 2.2.6             |
+| 1.1.0                   | 7.2.x           | 3.0.0             |
 
 To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.0.0" % "test"
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.1.0" % "test"
 ```
 
 ## What does this provide?

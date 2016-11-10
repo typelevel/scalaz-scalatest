@@ -1,18 +1,21 @@
 language: scala
 scala:
-  - 2.10.6
-  - 2.11.8
-jdk:
-  - oraclejdk8
-  - oraclejdk7
+- 2.10.6
+- 2.11.8
+matrix:
+  include:
+  - scala: 2.12.0
+    jdk: oraclejdk8
 
 cache:
   directories:
   - "$HOME/.ivy2/cache"
   - "$HOME/.sbt/boot/"
 
-script:
-  - sbt clean coverage test coverageReport
+install:
+  - pip install --user codecov
 
+script:
+- sbt ++$TRAVIS_SCALA_VERSION coverage test coverageReport
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- codecov

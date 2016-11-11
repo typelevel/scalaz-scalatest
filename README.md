@@ -9,14 +9,16 @@ Scalatest bindings for scalaz.
 
 ## Setup
 
-We currently crossbuild for Scala 2.10 & 2.11.
+We currently crossbuild for Scala 2.10, 2.11 & 2.12.
 
 |Scalaz-Scalatest Version | Scalaz Version  | Scalatest Version |
 |-------------------------| --------------  | ----------------- |
 | 0.4.0                   | 7.1.x           | 2.2.6             |
-| 0.5.0                   | 7.1.x           | 3.0.0             |
+| 0.5.1                   | 7.1.x           | 3.0.0             |
 | 1.0.0                   | 7.2.x           | 2.2.6             |
-| 1.1.0                   | 7.2.x           | 3.0.0             |
+| 1.1.1                   | 7.2.x           | 3.0.0             |
+
+**Disclaimer** Only the scalatest 3.0.0 versions are available for Scala 2.12. Feel free to open an issue if you need Scalatest 2.2.x with 2.12.x.
 
 To include this in your project, add the dependency (substituting version # as necessary):
 

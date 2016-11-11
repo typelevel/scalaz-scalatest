@@ -1,14 +1,16 @@
 package org.typelevel.scalatest
 
-trait Util {
+import org.scalatest.{ WordSpec, Matchers, OptionValues }
 
+abstract class TestBase extends WordSpec with Matchers with OptionValues {
   val thisRecord = "I will not buy this record, it is scratched."
   val thisTobacconist = "Ah! I will not buy this tobacconist's, it is scratched."
   val hovercraft = "Yes, cigarettes. My hovercraft is full of eels."
+
   /**
    * Shamelessly swiped from Scalatest.
    */
-  def thisLineNumber = {
+  final def thisLineNumber = {
     val st = Thread.currentThread.getStackTrace
 
     if (!st(2).getMethodName.contains("thisLineNumber"))
@@ -16,5 +18,4 @@ trait Util {
     else
       st(3).getLineNumber
   }
-
 }

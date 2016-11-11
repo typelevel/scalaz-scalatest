@@ -1,10 +1,9 @@
 package org.typelevel.scalatest
 
-import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
+import org.scalatest.matchers.{ BeMatcher, MatchResult, Matcher }
 
-import scalaz.{Failure, NonEmptyList, Success, Validation, ValidationNel}
+import scalaz.{ Failure, NonEmptyList, Success, Validation, ValidationNel }
 import scalaz.syntax.validation._
-
 
 trait ValidationMatchers {
   import scala.language.implicitConversions
@@ -48,7 +47,6 @@ trait ValidationMatchers {
    * @return
    */
   def beSuccess[T](element: T): Matcher[Validation[_, T]] = BeScalazSuccessMatcher[T](element)
-
 
   case class HasScalazFailureNelMatcher[E](element: E) extends Matcher[ValidationNel[E, _]] {
     def apply(validation: ValidationNel[E, _]): MatchResult = {
@@ -101,7 +99,6 @@ trait ValidationMatchers {
     }
   }
 
-
   class IsScalazSuccessMatcher[T] extends BeMatcher[Validation[_, T]] {
     def apply(validation: Validation[_, T]) = MatchResult(
       validation.isSuccess,
@@ -109,7 +106,6 @@ trait ValidationMatchers {
       s"$validation was Success(_), but should *NOT* have been."
     )
   }
-
 
   // SHOULD still catch NEL Based on type aliasing...
   class IsScalazFailureMatcher[E] extends BeMatcher[Validation[E, _]] {
@@ -119,7 +115,6 @@ trait ValidationMatchers {
       s"$validation was a Failure, but should *NOT* have been."
     )
   }
-
 
 }
 

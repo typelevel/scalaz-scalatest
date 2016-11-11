@@ -1,6 +1,6 @@
 package org.typelevel.scalatest
 
-import org.scalatest.exceptions.{TestFailedException,StackDepthException}
+import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
 
 import scalaz.{ -\/, \/, \/- }
 import scalaz.syntax.either._
@@ -36,13 +36,13 @@ trait DisjunctionValues {
    *
    * @see org.scalatest.OptionValues.Valuable
    */
-  class Disjunctionable[E, T](disjunction: E \/ T, pos:source.Position) {
+  class Disjunctionable[E, T](disjunction: E \/ T, pos: source.Position) {
     def value: T = {
       disjunction match {
         case \/-(right) =>
           right
         case -\/(left) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"$left is -\\/, expected \\/-."), None,pos)
+          throw new TestFailedException((_: StackDepthException) => Some(s"$left is -\\/, expected \\/-."), None, pos)
       }
     }
 
@@ -52,7 +52,7 @@ trait DisjunctionValues {
     def leftValue: E = {
       disjunction match {
         case \/-(right) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"$right is \\/-, expected -\\/."), None,pos)
+          throw new TestFailedException((_: StackDepthException) => Some(s"$right is \\/-, expected -\\/."), None, pos)
         case -\/(left) =>
           left
       }

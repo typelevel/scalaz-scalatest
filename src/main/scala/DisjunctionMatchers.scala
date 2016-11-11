@@ -1,13 +1,12 @@
 package org.typelevel.scalatest
 
-import org.scalatest.matchers.{MatchResult, BeMatcher, Matcher}
+import org.scalatest.matchers.{ MatchResult, BeMatcher, Matcher }
 
 import scalaz.{ -\/, \/, \/- }
 import scalaz.syntax.either._
 
 trait DisjunctionMatchers {
   import scala.language.implicitConversions
-
 
   def beLeft[E](element: E): Matcher[E \/ _] = BeScalazLeftDisjunctionMatcher[E](element)
 
@@ -77,7 +76,5 @@ trait DisjunctionMatchers {
       s"$disjunction was a Right disjunction, but should *NOT* have been."
     )
   }
-
-
 
 }

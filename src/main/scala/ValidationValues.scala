@@ -1,9 +1,9 @@
 package org.typelevel.scalatest
 
-import org.scalatest.exceptions.{TestFailedException, StackDepthException}
+import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
 import org.scalactic.source
 
-import scalaz.{ Validation, Success, Failure}
+import scalaz.{ Validation, Success, Failure }
 import scalaz.syntax.validation._
 
 trait ValidationValues {
@@ -14,7 +14,7 @@ trait ValidationValues {
    *
    * @param validation the `scalaz.Validation` on which to add the `value` method
    */
-  implicit def convertValidationToValidationable[E, T](validation: Validation[E, T])(implicit pos:source.Position): Validationable[E, T] = new Validationable(validation,pos)
+  implicit def convertValidationToValidationable[E, T](validation: Validation[E, T])(implicit pos: source.Position): Validationable[E, T] = new Validationable(validation, pos)
 
   // TODO: Fix me as a proper repl session example
   /**
@@ -36,13 +36,13 @@ trait ValidationValues {
    *
    * @see org.scalatest.OptionValues.Valuable
    */
-  class Validationable[E, T](validation: Validation[E, T], pos:source.Position) {
+  class Validationable[E, T](validation: Validation[E, T], pos: source.Position) {
     def value: T = {
       validation match {
         case Success(right) =>
           right
         case Failure(left) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"$left is Failure, expected Success."), None,pos)
+          throw new TestFailedException((_: StackDepthException) => Some(s"$left is Failure, expected Success."), None, pos)
       }
     }
 

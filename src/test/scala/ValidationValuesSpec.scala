@@ -1,47 +1,46 @@
 package org.typelevel.scalatest
 
-import org.scalatest.{FunSpec, Matchers}
+import org.scalatest.{ FunSpec, Matchers }
 import Matchers._
 import org.scalatest.OptionValues._
 import org.scalatest.exceptions.TestFailedException
-import scalaz.{Validation, Success, Failure}
+import scalaz.{ Validation, Success, Failure }
 import scalaz.syntax.validation._
 
-class ValidationValuesSpec extends FunSpec with Util {
+class ValidationValuesSpec extends TestBase {
   import ValidationValues._
 
-  describe("value on Validation") {
-    it("should return the value inside a validation if that validation is Success") {
+  "value on Validation" should {
+    "should return the value inside a validation if that validation is Success" in {
       val r: Validation[String, String] = Success(thisRecord)
-      r.value should === (thisRecord)
+      r.value should ===(thisRecord)
     }
 
-    it("should throw TestFailedException if that validation is Failure") {
+    "should throw TestFailedException if that validation is Failure" in {
       val r: Validation[String, String] = Failure(thisTobacconist)
       val caught =
         intercept[TestFailedException] {
-          r.value should === (thisRecord)
+          r.value should ===(thisRecord)
         }
-      caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
-      caught.failedCodeFileName.value should be ("ValidationValuesSpec.scala")
+      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      caught.failedCodeFileName.value should be("ValidationValuesSpec.scala")
     }
   }
 
-  describe("leftValue on Validation"){
-    it("should return the value if it's left"){
+  "leftValue on Validation" should {
+    "should return the value if it's left" in {
       val r = Failure(thisRecord)
-      r.leftValue should === (thisRecord)
+      r.leftValue should ===(thisRecord)
     }
 
-    it("should throw TestFailedException if the validation is right"){
+    "should throw TestFailedException if the validation is right" in {
       val r = Success(thisRecord)
-      val caught = intercept[TestFailedException]{
+      val caught = intercept[TestFailedException] {
         r.leftValue
-      } 
-      caught.failedCodeLineNumber.value should equal (thisLineNumber - 2)
-      caught.failedCodeFileName.value should be ("ValidationValuesSpec.scala")
+      }
+      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      caught.failedCodeFileName.value should be("ValidationValuesSpec.scala")
     }
   }
 }
-
 

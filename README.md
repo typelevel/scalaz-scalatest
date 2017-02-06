@@ -23,7 +23,7 @@ We currently crossbuild for Scala 2.10, 2.11 & 2.12.
 To include this in your project, add the dependency (substituting version # as necessary):
 
 ```sbt
-libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.1.0" % "test"
+libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.1.1" % "test"
 ```
 
 ## What does this provide?
@@ -49,7 +49,7 @@ This makes the matchers in `DisjunctionMatchers` available inside the scope of y
 You can also import explicitly from a provided object:
 
 ```scala
-import scalaz.scalatest.DisjunctionMatchers
+import org.typelevel.scalatest.DisjunctionMatchers
 
 class MySillyWalkSpec extends FlatSpec with Matchers { 
   import DisjunctionMatchers._

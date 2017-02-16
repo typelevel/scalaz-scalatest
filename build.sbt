@@ -11,6 +11,7 @@ scalacOptions ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.scalaz" %% "scalaz-core" % "7.2.7",
+  "org.scalaz" %% "scalaz-concurrent" % "7.2.7",
   "org.scalatest" %% "scalatest" % "3.0.0"
 )
 

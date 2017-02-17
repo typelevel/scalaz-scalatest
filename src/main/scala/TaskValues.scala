@@ -45,6 +45,15 @@ trait TaskValues {
           throw new TestFailedException((_: StackDepthException) => Some(s"Task failed: Resulting $left is -\\/, expected \\/-."), None, pos)
       }
     }
+
+    def failValue: Throwable = {
+      task.unsafePerformSyncAttempt match {
+        case \/-(right) =>
+          throw new TestFailedException((_: StackDepthException) => Some(s"Task failed: Resulting $right is \\/-, expected -\\/."), None, pos)
+        case -\/(left) =>
+          left
+      }
+    }
   }
 }
 

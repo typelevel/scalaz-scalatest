@@ -168,6 +168,7 @@ A similar thing is provided for `scalaz.concurrent.Task`. If you import or mixin
 * [Thomas Lockney](http://github.com/tlockney) [tlockney]
 * [Ryan Delucchi](http://github.com/ryanonsrc) [ryanonsrc]
 * [Jason Swartz](http://github.com/swartzrock) [swartzrock]
+* [Murph Murphy](http://github.com/skeet70) [skeet70]
 
 
 Partially inspired by scalaz-specs2. Predecesor to [cats-scalatest](https://github.com/IronCoreLabs/cats-scalatest).

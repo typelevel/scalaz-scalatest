@@ -14,9 +14,9 @@ We currently crossbuild for Scala 2.10, 2.11 & 2.12.
 |Scalaz-Scalatest Version | Scalaz Version  | Scalatest Version |
 |-------------------------| --------------  | ----------------- |
 | 0.4.0                   | 7.1.x           | 2.2.6             |
-| 0.5.1                   | 7.1.x           | 3.0.0             |
+| 0.5.2                   | 7.1.x           | 3.0.0             |
 | 1.0.0                   | 7.2.x           | 2.2.6             |
-| 1.1.1                   | 7.2.x           | 3.0.0             |
+| 1.1.2                   | 7.2.x           | 3.0.0             |
 
 **Disclaimer** Only the scalatest 3.0.0 versions are available for Scala 2.12. Feel free to open an issue if you need Scalatest 2.2.x with 2.12.x.
 
@@ -31,6 +31,7 @@ libraryDependencies += "org.typelevel" %% "scalaz-scalatest" % "1.1.1" % "test"
 Matchers & Helpers are presently offered for testing of the following scalaz concepts:
 * Disjunction - aka `\/` 
 * `Validation`
+* `Task`
 
 ## Usage
 
@@ -149,9 +150,10 @@ x.value shouldBe "hello"
 x.leftValue shouldBe "hello" 
 ```
 
-The same is true for the `Validation`. If you import or mixin `ValidationMatchers` you'll be able to call `.value` to extract
+The same is true for the `Validation`. If you import or mixin `ValidationValues` you'll be able to call `.value` to extract
 `Success` and `.leftValue` to extract the `Failure` side.
 
+A similar thing is provided for `scalaz.concurrent.Task`. If you import or mixin `TaskValues` you can call `.runValue` (Scalaz 7.1) or `.syncValue` (Scalaz 7.2) to run the `Task` to completion and extract the value. You can also call `failValue` to run the `Task` to completion and extract the failure. 
 ## Documentation and Support
 * See the [scaladoc](https://javadoc-badge.appspot.com/org.typelevel/scalaz-scalatest_2.11).
 * The [tests](https://github.com/typelevel/scalaz-scalatest/tree/master/src/test/scala) show usage.
